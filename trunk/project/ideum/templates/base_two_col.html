@@ -1,0 +1,36 @@
+{% load i18n %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="sv">
+	{% include "html_head.html" %}
+	<body>
+		<div id="doc4" class="yui-t7">
+            {% include "site_header.html" %}  
+			<div id="bd">
+				<div class="yui-g"></div>
+				<div class="yui-g twocol">
+					<div class="yui-u first">
+						<div id="content" role="main"><a name="content_target"></a>
+							{% if message %}
+							<div id="flash"><p>{{message|safe}}</p></div>
+							{% endif %}
+							<h1>{% ifequal page_h1 None %}{{page_title}}{% else %}{{page_h1}}{% endifequal %}</h1>
+							{% block content %}{% endblock %}
+						</div>
+						<div class="column_footer" role="contentinfo">{% block column_footer %}{% endblock %}</div>
+					</div>
+					<div class="yui-u">
+						<div id="sidebar"><a name="sidebar_target"></a>
+							{% block col2 %}{% endblock %}
+						</div>
+					</div>
+				</div>
+				<div class="yui-g robots-nocontent">
+					{% block footer %}{% endblock %}
+				</div>
+			</div>
+			<div id="ft" class="robots-nocontent footer" role="contentinfo">{% include "site_footer.html" %}</div>
+		</div>
+		{% include "statscripts.html" %}
+{% block endscripts %}{% endblock %}
+	</body>
+</html>

@@ -1,0 +1,18 @@
+{% load i18n %}
+{% load tag_extras %}
+<div class="info">
+    <div class="label">{% trans "Votes:" %}</div>
+    <div class="count">134</div>
+    <div class="submitter">
+        <div class="label">{% trans "Submitted by:" %}</div>
+        <div>{% gravatar idea.submitter.email %}</div>
+        <div class="name"><a href="{{idea.submitter.get_absolute_url}}">{{idea.submitter.name}}</a></div> 
+    </div>
+    <div class="vote">
+        <p>Vote for this idea:</p>
+        <form method="POST" action="/idea/{{idea.id}}/vote/">
+            <input type="image" value="for" id="btnfor" name="btnfor" src="/static/img/plus.png" alt="Vote for">
+            <input type="image" value="against" id="btnagainst" name="btnagainst" src="/static/img/minus.png" alt="Vote against">
+        </form>
+    </div>
+</div>

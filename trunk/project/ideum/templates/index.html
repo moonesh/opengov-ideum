@@ -1,0 +1,61 @@
+{% extends 'base_two_col.html' %}
+{% load i18n %}
+{% load tag_extras %}
+
+{% block content %}
+<p>{% trans "Welcome to the citizen idea forum for Example city. By sharing your ideas on how to improve our community we hope to make Example city a better place to live. You can also participate in the discussion around ideas subitted by others." %}</p>
+<hr>
+<h2>{% trans "Popular ideas" %}</h2>
+<div id="ideas">
+{% if ideas %}
+<table class="ideas">
+    <thead class="outside">
+        <tr>
+            <th>Submitter</th>
+            <th>Idea</th>
+            <th>Votes</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for idea in ideas %}
+        <tr class="idea" id="idea-{{idea.id}}">
+            <td class="author">{% gravatar idea.submitter.email %}</td>
+            <td class="body"><a href="{{idea.get_absolute_url}}">{{idea.title}}</a><span class="when">{{idea.created_date|date:"Y-m-d" }}</span></td>
+            <td class="vote">{{idea.votes__count}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot></tfoot>
+</table>
+{% else %}
+    <p>No ideas submited yet.</p>
+{% endif %}
+</div>
+{% endblock %}
+
+
+{% block col2 %}
+<div class="ideapanel">
+<h2>{% trans "Submit your idea!" %}</h2>
+<p>{% trans "Have an idea to improve our community? Share it with the rest of us via the form below."  %}</p>
+	<form action="/" method="POST" id="ideaform">
+		{% if form.errors %}
+		<div class="errors">
+			<h3 id="error">{% trans "An problem occurred when saving yor idea" %}</h3>
+		<p>{% trans "Please correct the information and click the save button again." %}</p>
+		<ul>
+		{% for field in form %}
+		{% if field.errors %}
+		<li>{{ field.label }}: {{ field.errors|striptags }}</li>
+		{% endif %}
+		{% endfor %}
+		</ul>
+		</div>
+		{% endif %}
+		{{ form.as_p }}
+        <p class="note">Before your idea is published you will have to click the link we&apos;ll send you immediately after clicking the button below.</p>
+		<input type="submit" value="{% trans "Submit my idea" %}" />
+    </form>
+</div>
+{% endblock %}
+
