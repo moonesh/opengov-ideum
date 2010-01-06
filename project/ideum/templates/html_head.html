@@ -1,0 +1,12 @@
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8">
+		<title>{% block title %}{% if page_title %}{{page_title}}{% endif %}{% endblock %} - Ideum</title>	
+        <link rel="stylesheet" href="/static/css/reset-fonts-grids.css" type="text/css">
+		<link href="/static/css/screen.css?123" rel="stylesheet" type="text/css" media="screen">
+		<link href="/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+		<!--[if IE 7]><link href="/static/css/ie7.css" rel="stylesheet" type="text/css"><![endif]-->
+		<!--[if lte IE 7]><link href="/static/css/ie6-7.css" rel="stylesheet" type="text/css"><![endif]-->
+		<link rel="alternate" type="application/atom+xml" title="Ideas" href="/feeds/ideas/">
+		{% include "html_meta.html" %}
+		{% block htmlhead %}{% endblock %}
+	</head>

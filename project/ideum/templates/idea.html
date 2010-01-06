@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load tag_extras %}
+
+{% block content %}
+<div class="idea">
+    {% include "idea_info.html" %}
+    {{idea.text|safe|linebreaks}}
+</div>
+{% endblock %}
+
+
+{% block sidebar %}
+<h2>{% trans "Share this idea!" %}</h2>
+<p>{% trans "By spreading the idea you increase chances of having more people improve it." %}</p>
+<p>[Share buttons]</p>
+{% endblock %}
+
